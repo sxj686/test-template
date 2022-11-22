@@ -1,46 +1,26 @@
-# Introduce
+pod-template
+============
 
-## English:
-The pod-template officially provided is too cumbersome. I keep asking for answers to the input questions, and I don’t like the created directory. In order to improve the efficiency of component-based development, I modified the official scripts and source code to easily create Objective projects and Swift projects. The creation method remains the same. You only need to add a parameter and template URL.
+An opinionated template for creating a Pod with the following features:
 
-## 中文：
-官方提供的pod-template，流程太繁琐了，不停的询问输入问题的答案，而且创建的目录，本人很不喜欢。为了提高组件化开发效率，我修改了官方的脚本和源码，很方便的创建Objective项目和Swift项目，创建方式不变，只需要添加一个参数和修改template URL即可。
+- Git as the source control management system
+- Clean folder structure
+- Project generation
+- MIT license
+- Testing as a standard
+- Turnkey access to Travis CI
+- Also supports Carthage
 
+## Getting started
 
-# Useage
+There are two reasons for wanting to work on this template, making your own or improving the one for everyone's. In both cases you will want to work with the ruby classes inside the `setup` folder, and the example base template that it works on from inside `template/ios/`. 
 
-## English：
-0. First enter any of your own directories.
+## Best practices
 
-1. Create OC private components in this directory: pod lib create ProjectName Objc --template-url="https://github.com/xiayuanquan/pod-template"
+The command `pod lib create` aims to be ran along with this guide: https://guides.cocoapods.org/making/using-pod-lib-create.html so any changes of flow should be updated there also.
 
-2. Create Swift private components in this directory: pod lib create ProjectName Swift --template-url="https://github.com/xiayuanquan/pod-template"
+It is open to communal input, but adding new features, or new ideas are probably better off being discussed in an issue first. In general we try to think if an average Xcode user is going to use this feature or not, if it's unlikely is it a _very strongly_ encouraged best practice ( ala testing / CI. ) If it's something useful for saving a few minutes every deploy, or isn't easily documented in the guide it is likely to be denied in order to keep this project as simple as possible.
 
-3. Objc and Swift are not case sensitive.
+## Requirements:
 
-
-## 中文：
-0. 首先进入到自己的任意一个目录。
-
-1. 在该目录创建OC私有组件：pod lib create ProjectName Objc --template-url="https://github.com/xiayuanquan/pod-template"
-
-2. 在该目录创建Swift私有组件：pod lib create ProjectName Swift --template-url="https://github.com/xiayuanquan/pod-template"
-
-3. Objc 和 Swift 不用区分大小写。
-
-
-# Screenshot
-
-## OC
-<img src="https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-oc1.png" width="800" height="600">
-<img src="https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-oc2.png" width="800" height="600">
-<!-- ![image](https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-oc1.png) -->
-<!-- ![image](https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-oc2.png) -->
-
-## Swift
-<img src="https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-swift1.png" width="800" height="600">
-<img src="https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-swift2.png" width="800" height="600">
-<!-- ![image](https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-swift1.png) -->
-<!-- ![image](https://github.com/xiayuanquan/pod-template/blob/master/screenshots/screenshot-swift2.png) -->
-
-
+- CocoaPods 1.0.0+

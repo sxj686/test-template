@@ -1,6 +1,6 @@
 module Pod
 
-  class ConfigureSwift
+  class ConfigureMacOSSwift
     attr_reader :configurator
 
     def self.perform(options)
@@ -19,43 +19,27 @@ module Pod
         when :quick
           configurator.add_pod_to_podfile "Quick', '~> 2.2.0"
           configurator.add_pod_to_podfile "Nimble', '~> 10.0.0"
-          configurator.set_test_framework "quick", "swift", "swift"
+          configurator.set_test_framework "quick", "swift", "macos-swift"
 
         when :none
-          configurator.set_test_framework "xctest", "swift", "swift"
-      end
-
-      snapshots = configurator.ask_with_answers("Would you like to do view based testing", ["Yes", "No"]).to_sym
-      case snapshots
-        when :yes
-          configurator.add_pod_to_podfile "FBSnapshotTestCase' , '~> 2.1.4"
-
-          if keep_demo == :no
-              puts " Putting demo application back in, you cannot do view tests without a host application."
-              keep_demo = :yes
-          end
-
-          if framework == :quick
-              configurator.add_pod_to_podfile "Nimble-Snapshots' , '~> 9.4.0"
-          end
+          configurator.set_test_framework "xctest", "swift", "macos-swift"
       end
 
       Pod::ProjectManipulator.new({
         :configurator => @configurator,
-        :xcodeproj_path => "templates/swift/Example/PROJECT.xcodeproj",
-        :platform => :ios,
+        :xcodeproj_path => "templates/macos-swift/Example/PROJECT.xcodeproj",
+        :platform => :osx,
         :remove_demo_project => (keep_demo == :no),
         :prefix => ""
       }).run
+
+      `mv ./templates/macos-swift/* ./`
 
       # There has to be a single file in the Classes dir
       # or a framework won't be created
       `touch Pod/Classes/ReplaceMe.swift`
 
-      `mv ./templates/swift/* ./`
-
-      # remove podspec for osx
-      `rm ./NAME-osx.podspec`
+      `mv ./NAME-osx.podspec ./NAME.podspec`
     end
   end
 
